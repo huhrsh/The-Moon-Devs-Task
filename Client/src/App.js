@@ -8,15 +8,18 @@ const App = () => {
   const { user, loading, login, logout } = useAuthSession();
 
   async function handleLogin(){
+    // if username or password is empty, show warning and return 
     if(!username || !password){
       toast.warn("Username or Password cannot be empty.")
       return;
     }
+    // call the login function  
     await login(username, password)
     setUsername("")
     setPassword("")
   }
-
+  
+  // return loading text if loading 
   if(loading){
     return(
       <p className='px-4 py-2 text-lg'>Loading...</p>
